@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
+import { BrowserRouter as Router,
+  Routes, 
+  Route,
+    Link } 
+    from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import Home from './Componets/Home';
+import VideoCard from './Componets/VideoCard';
+import VideoCreator from './Componets/VideoCreator';
 
-function App() {
+const App:ComponentType=()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <> 
+     <Router>
+      <Routes>
+        <Route path="/" element={<Home/>}  />
+        <Route path="VideoCard" element={<VideoCard type="youtube" title="איך לקנות אושר - מיכאל נורטון Michael Norton" uid="oqUKmHULpd4" description='this is the video description/ the short summry/notes' url="https://www.youtube.com/watch?v=oqUKmHULpd4" />}  />
+        <Route path="VideoCreator"element={<VideoCreator/>}  />
+      </Routes>
+</Router>
+</>
+
   );
 }
 
