@@ -70,7 +70,7 @@ const VideoCreator: ComponentType = (props) => {
                         value={url}
                         onChange={handleUrlChange}
                     />
-                    <FormControl >
+                    <FormControl sx={{width:'25%',}} >
                         <InputLabel id="demo-simple-select-label">type of video</InputLabel>
                         <Select
                             value={type}
