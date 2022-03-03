@@ -1,5 +1,5 @@
 
-import React, { ComponentType, } from "react"
+import React, { ComponentType, useEffect, } from "react"
 import { Avatar, Card, CardContent, CardHeader, FormControl, InputLabel, MenuItem, Select, TextField, Typography, SelectChangeEvent, Button } from "@mui/material";
 import { red } from '@mui/material/colors';
 import { Link } from "react-router-dom";
@@ -17,6 +17,7 @@ const VideoCreator: ComponentType = (props) => {
     const [url, setUrl] = React.useState("");
     const [type, setType] = React.useState("");
     const [uid, setUid] = React.useState("");
+    const [disableSubmit,setdisableSubmit]=React.useState(true);
     const types = ["ted", "youtube", "google photos"];
     const handleTypesChange = (event: SelectChangeEvent) => {
         setType(event.target.value);
@@ -24,7 +25,16 @@ const VideoCreator: ComponentType = (props) => {
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => { setTitle(event.target.value); };
     const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => { setDescription(event.target.value); };
     const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => { setUrl(event.target.value); };
+    useEffect(() => {//HACK: this is a hack to make sure the form is not submitted until all the fields are filled,
+        //but it is not a good solution, because its expensive to check if all the fields are filled every tine the user types in a field
 
+        if (title.length > 0 && description.length > 0 && url.length > 0 && type.length > 0 ) {
+            setdisableSubmit(false);
+        }
+        else {
+            setdisableSubmit(true);
+        }
+    }, [title, description, url, type, uid]);
         const  submitVideo = () => {
             console.log(title, description, url, type, uid);
         }
@@ -33,7 +43,7 @@ const VideoCreator: ComponentType = (props) => {
             <Card
                 sx={{
                     margin: 4,
-                    width: '25ch',
+                    width: '25%',
                 }} >
                 <form>
                     <TextField
@@ -52,7 +62,7 @@ const VideoCreator: ComponentType = (props) => {
                         value={description}
                         onChange={handleDescriptionChange}
                     />
-                    <TextField
+                    <TextField //TODO: add a validation for the url and its type
                         sx={{ margin: 1, }}
                         title="url"
                         id="outlined-required"
@@ -60,7 +70,7 @@ const VideoCreator: ComponentType = (props) => {
                         value={url}
                         onChange={handleUrlChange}
                     />
-                    <FormControl fullWidth>
+                    <FormControl >
                         <InputLabel id="demo-simple-select-label">type of video</InputLabel>
                         <Select
                             value={type}
@@ -76,9 +86,18 @@ const VideoCreator: ComponentType = (props) => {
                             })}
                         </Select>
                     </FormControl>
-                    <Button onClick={submitVideo} variant="contained" color="success">
-                        Submit
+                    <Button onClick={submitVideo} disabled={disableSubmit} variant="contained" color="success" fullWidth>
+                        Submit (TODO: disable the button until all the fields are filled)
                     </Button>
+                    <Typography variant="h5" >
+                        this infomation will be sent to the server and will be saved in the database - 
+                    </Typography>
+                    <Typography variant="h6" >
+                    title - {title} <br />
+                    description - {description} <br />
+                    url - {url} <br />
+                    type - {type} <br />
+                    </Typography>
                 </form>
             </Card>
         </>);
