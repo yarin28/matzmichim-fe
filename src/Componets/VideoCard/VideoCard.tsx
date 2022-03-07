@@ -15,23 +15,13 @@ interface VideoCardProps {
 const VideoCard: ComponentType<VideoCardProps> = (props) => {
     return(
     <>
-        <Card sx={{ maxWidth: 345 }}>
-<CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {props.type?.charAt(0)}
-          </Avatar>
-        }
-        title={<a href={props.url}>{props.title}</a>}
-        subheader={props.description}
-      />
- <CardContent>
- <a href={props.url}>{props.url}</a>
-      </CardContent>
-            
-        </Card>
-    
-    
+        />
+        <CardContent>
+          <b>language</b> - {props?.language ? props.language : "non in db"}<br />
+          <b>length</b> - {props?.length ? props.length : "non in db"}<br />
+          <b>uid</b> -  {props?.uid}
+        </CardContent>
+
     </>);
 };
 export default VideoCard;
