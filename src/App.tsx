@@ -9,6 +9,7 @@ import './App.css';
 import Home from './Componets/Home';
 import VideoCard from './Componets/VideoCard';
 import VideoCreator from './Componets/VideoCreator';
+import CourseCreator from './Componets/CourseCreator';
 
 const App:ComponentType=()=> {
   return (
@@ -18,6 +19,7 @@ const App:ComponentType=()=> {
         <Route path="/" element={<Home/>}  />
         <Route path="VideoCard" element={<VideoCard type="youtube" title="איך לקנות אושר - מיכאל נורטון Michael Norton" uid="oqUKmHULpd4" description='this is the video description/ the short summry/notes' url="https://www.youtube.com/watch?v=oqUKmHULpd4" />}  />
         <Route path="VideoCreator"element={<VideoCreator/>}  />
+        <Route path="CourseCreator"element={<CourseCreator/>}  />
       </Routes>
 </Router>
 </>
