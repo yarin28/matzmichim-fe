@@ -14,17 +14,24 @@ interface VideoCardProps {
 const VideoCreator: ComponentType = (props) => {
     const [title, setTitle] = React.useState("");
     const [description, setDescription] = React.useState("");
+    const [length,setLength] = React.useState(0);
     const [url, setUrl] = React.useState("");
     const [type, setType] = React.useState("");
+    const [language, setLanguage] = React.useState("");
     const [uid, setUid] = React.useState("");
     const [disableSubmit,setdisableSubmit]=React.useState(true);
     const types = ["ted", "youtube", "google photos"];
+    const languages  = ["English","Hebrew","Arabic"];
     const handleTypesChange = (event: SelectChangeEvent) => {
         setType(event.target.value);
+    };
+    const handleLanguageChange = (event: SelectChangeEvent) => {
+        setLanguage(event.target.value);
     };
     const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => { setTitle(event.target.value); };
     const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => { setDescription(event.target.value); };
     const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => { setUrl(event.target.value); };
+    const handleLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => { setLength(parseInt(event.target.value)); };
     useEffect(() => {//HACK: this is a hack to make sure the form is not submitted until all the fields are filled,
         //but it is not a good solution, because its expensive to check if all the fields are filled every tine the user types in a field
 
@@ -62,6 +69,13 @@ const VideoCreator: ComponentType = (props) => {
                         value={description}
                         onChange={handleDescriptionChange}
                     />
+                    <TextField sx={{ margin: 1, }}
+                    title="length"
+                    id="outlined-required"
+                    label="length of the video"
+                    value={length}
+                    onChange={handleLengthChange}
+                    type="number"></TextField>
                     <TextField //TODO: add a validation for the url and its type
                         sx={{ margin: 1, }}
                         title="url"
