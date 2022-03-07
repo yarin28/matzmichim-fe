@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 interface VideoCardProps {
     title: string;//could name it "name"
-    description: string;
+    description?: string;
     url: string;
     type: "ted" | "youtube" | "google photos" | undefined;
-    uid: string;
+    uid?: string;
 }
 const VideoCreator: ComponentType = (props) => {
     const [title, setTitle] = React.useState("");
