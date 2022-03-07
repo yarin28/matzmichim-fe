@@ -4,11 +4,13 @@ import { red } from '@mui/material/colors';
 import { Link } from "react-router-dom";
 
 interface VideoCardProps {
-    title: string;//could name it "name"
-    description: string;
-    url: string;
-    type: "ted" | "youtube" | "google photos" |  undefined;
-    uid: string;
+  title: string;//could name it "name"
+  description?: string;
+  length?: number;
+  url: string;
+  language?: "English" | "Hebrew" | "Arabic" | undefined;
+  type: "ted" | "youtube" | "google photos" | undefined;
+  uid?: string;
 }
 const VideoCard: ComponentType<VideoCardProps> = (props) => {
     return(
