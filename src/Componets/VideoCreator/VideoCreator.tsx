@@ -100,6 +100,23 @@ const VideoCreator: ComponentType = (props) => {
                             })}
                         </Select>
                     </FormControl>
+                    <FormControl sx={{width:'25%',}} >
+                        <InputLabel id="demo-simple-select-label">language</InputLabel>
+                        <Select
+                            value={language}
+                            label="language"
+                            onChange={handleLanguageChange}
+                        >
+                            {languages?.map(option => {
+                                return (
+                                    <MenuItem key={option} value={option}>
+                                        {option}
+                                    </MenuItem>
+                                )
+                            })}
+                            </Select>
+                            </FormControl>
+
                     <Button onClick={submitVideo} disabled={disableSubmit} variant="contained" color="success" fullWidth>
                         Submit (TODO: disable the button until all the fields are filled)
                     </Button>
@@ -109,8 +126,10 @@ const VideoCreator: ComponentType = (props) => {
                     <Typography variant="h6" >
                     title - {title} <br />
                     description - {description} <br />
+                    length - {length} <br />
                     url - {url} <br />
                     type - {type} <br />
+                    language - {language} <br />
                     </Typography>
                 </form>
             </Card>
