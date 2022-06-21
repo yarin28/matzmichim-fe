@@ -19,9 +19,6 @@ const CourseCreator: ComponentType = () => {
   const [isFilePicked, SetIsFilePicked] = useState(false);
   const [Videos, SetVideos] = useState(MockVideosDatabase);
   const [formErrorMessage, SetFormErrorMessage] = useState("");
-  useEffect(() => {
-    console.log(Videos);
-  }, []);
   const handleSelectedVideo = (uid: string) => {
     console.log(uid);
     if (selectingRequiredVideos) {
@@ -109,6 +106,7 @@ const CourseCreator: ComponentType = () => {
                     SetFile(fileList[0]);
                     SetIsFilePicked(true);
                     console.log(fileList[0].name);
+                    console.log(fileList[0]);
 
                   }}
                   type="file"
@@ -135,7 +133,7 @@ const CourseCreator: ComponentType = () => {
           {Videos?.map(video => {
             return (
               <Grid item xs>
-                <Paper elevation={4} sx={{ background: "gray" }}  >
+                <Paper elevation={4}   >
                   <VideoCard title={video.title}
                     url={video.url}
                     type={video.type as keyof typeof types}
