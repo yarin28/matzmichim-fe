@@ -13,6 +13,10 @@ interface VideoCardProps {
   uid?: string;
 }
 const VideoCard: ComponentType<VideoCardProps> = (props) => {
+  const embedIdFromUrl = (url: string) => {
+    const urlParts = url.split("/");
+    return urlParts[urlParts.length - 1];
+  };
   return (
     <>
       <Card sx={{ maxWidth: 345, margin: 1, minWidth: 300 }}>
@@ -26,6 +30,15 @@ const VideoCard: ComponentType<VideoCardProps> = (props) => {
           subheader={props.description}
         />
         <CardContent>
+ <iframe
+      width="300"
+      height="200"
+      src={`https://www.youtube.com/embed/${embedIdFromUrl(props.url)}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title="Embedded youtube"
+    />
           <b>language</b> - {props?.language ? props.language : "non in db"}<br />
           <b>length</b> - {props?.length ? props.length : "non in db"}<br />
           <b>uid</b> -  {props?.uid}
