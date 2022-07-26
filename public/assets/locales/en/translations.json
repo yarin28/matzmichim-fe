@@ -2,16 +2,13 @@
     "Matzmichim": "Matzmichim!",
     "welcome to home page": "welcome to home page!",
     "course name": "course name",
-    "course description":" course description",
-    "Upload":"Upload",
-    "Validate":"Validate",
-    "File":"File",
-    "notes on users upload file title":"Notes on users upload file",
-    "notes on users upload file body":"the file cant be longer then 100 rows",
-    "upload file":"upload file",
-    "course upload title":"Course upload"
-
-
-
-
+    "course description": " course description",
+    "Upload": "Upload",
+    "Validate": "Validate",
+    "File": "File",
+    "notes on users upload file title": "Notes on users upload file",
+    "notes on users upload file body": "the file cant be longer then 100 rows",
+    "upload file": "upload file",
+    "course upload title": "Course upload",
+    "the form was sent successfully": "the form was sent successfully"
 }

@@ -15,9 +15,11 @@ import CourseCreator from './Componets/CourseCreator';
 import Test from './Componets/Test';
 import CommentList from './Componets/CommentList';
 import { CssBaseline } from '@mui/material';
-import { AuthProvider } from './Componets/Auth/Auth';
+import { UserAuthProvider } from './Componets/UserAuth/UserAuth';
 import CourseUpload from './Pages/CourseUpload';
 import cookies from 'js-cookie'
+import { Login } from './Componets/Login/Login'
+import OtpInput from './Componets/OtpInput';
 
 
 const App: ComponentType = () => {
@@ -31,7 +33,7 @@ document.body.dir = currentLanguageDirection;
   return (
     <>
       <CssBaseline />
-      {/* <AuthProvider> */}
+      <UserAuthProvider>
 
         <Router>
           <Routes>
@@ -42,9 +44,11 @@ document.body.dir = currentLanguageDirection;
             <Route path="Test" element={<Test />} />
             <Route path="CommentList" element={<CommentList />} />
             <Route path="csvUpload" element={<CourseUpload />} />
+            <Route path="login" element={<Login/>}/>
+            <Route path="optInput" element={<OtpInput/>}/>
           </Routes>
         </Router>
-      {/* </AuthProvider> */}
+      </UserAuthProvider>
     </>
 
   );

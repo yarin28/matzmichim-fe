@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, TextField, Typography } from "@mui/material";
+import { Button, Alert, ButtonGroup, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { ComponentType, useState } from "react";
 import UsersCsvGrid from "../../Componets/UsersCsvGrid";
@@ -12,6 +12,7 @@ const CourseUpload: ComponentType = () => {
     const [file, setFile] = useState<File>();
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [hasBeenValidated, setHasBeenValidated] = useState(false);
+    const [hasBeenReceivedCorrectly, setHasBeenReceivedCorrectly] = useState(false);
     const { t } = useTranslation();
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -28,7 +29,7 @@ const CourseUpload: ComponentType = () => {
         const response = fetch("http://localhost:8090/admins/upload_csv", {
             method: "POST",
             body: FD,
-        }).then(response => response.json()).then(response => setCsvRows(response));
+        }).then(response => response.json()).then(response => { setCsvRows(response); setHasBeenReceivedCorrectly(true) });
     }
     const sendValidate = () => {
 
@@ -37,8 +38,7 @@ const CourseUpload: ComponentType = () => {
         const response = fetch("http://localhost:8090/admins/validate_csv", {
             method: "POST",
             body: FD,
-        }).then(response => response.json()).then(response => setCsvRows(response));
-        setHasBeenValidated(true);
+        }).then(response => response.json()).then(response => setCsvRows(response)).then(() => setHasBeenValidated(true));
     }
     return (
         <div>
@@ -89,9 +89,11 @@ const CourseUpload: ComponentType = () => {
                     {`${t('course description')}: ${description}`}<br></br>
                     {`${t('File')}: ${file?.name}`}
                 </Typography>
+                {hasBeenReceivedCorrectly ?
+                    <Alert severity="success">{t('the form was sent successfully')}</Alert> : <></>}
             </Box>
             <UsersCsvGrid rows={csv_rows} />
-            <Typography variant="h3" >
+            <Typography v80CCA41A-CADB-4198-A11F-2229B65F1B46ariant="h3" >
                 {t('notes on users upload file title')}
             </Typography>
             <Typography variant="body1"  >

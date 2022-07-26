@@ -9,5 +9,6 @@
     "notes on users upload file title":"הערות לגבי קובץ המשתמשים",
     "notes on users upload file body":"הקובץ לא יכול להיות יותר גדול מ100 שורות",
     "upload file ":"העלה קובץ",
-    "course upload title":"הכנס קורס בעזרת טבלת משתמשים"
+    "course upload title":"הכנס קורס בעזרת טבלת משתמשים",
+    "the form was sent successfully": "הקובץ התקבל בשרת בצורה נכונה"
 }
